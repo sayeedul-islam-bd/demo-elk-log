@@ -39,7 +39,7 @@
 	</logger>
 	<springProfile name="staging">
 		<logger name="com.example" level="TRACE">
-			<appender-ref ref="CONSOLE" />
+			<appender-ref ref="LOGSTASH_UDP" />
 		</logger>
 	</springProfile>
 </configuration>

@@ -1,3 +1,4 @@
 spring:
   application.name: demo-elk-log
-  logging.path: target
+
+logging.path: target
