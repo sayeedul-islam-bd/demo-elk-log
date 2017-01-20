@@ -22,22 +22,24 @@
 		<appender-ref ref="LOGSTASH_FILE"/>
 	</appender>
 
-	<appender name="LOGSTASH_UDP" class="net.logstash.logback.appender.LogstashSocketAppender">
-		<host>${ELK_HOST}</host>
-		<!-- port is optional (default is syslog port 514) -->
-		<port>5514</port>
-	</appender>
+	<springProfile name="elk">
+		<appender name="LOGSTASH_UDP" class="net.logstash.logback.appender.LogstashSocketAppender">
+			<host>${ELK_HOST}</host>
+			<!-- port is optional (default is syslog port 514) -->
+			<port>5514</port>
+		</appender>
 
-	<appender name="LOGSTASH_TCP" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
-		<destination>${ELK_HOST}:4560</destination>
-		<!-- encoder is required -->
-		<encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
-	</appender>
+		<appender name="LOGSTASH_TCP" class="net.logstash.logback.appender.LogstashTcpSocketAppender">
+			<destination>${ELK_HOST}:4560</destination>
+			<!-- encoder is required -->
+			<encoder class="net.logstash.logback.encoder.LogstashEncoder"/>
+		</appender>
+	</springProfile>
 
 	<logger name="com.example" level="DEBUG">
 		<appender-ref ref="ASYNC" />
 	</logger>
-	<springProfile name="staging">
+	<springProfile name="dev">
 		<logger name="com.example" level="TRACE">
 			<appender-ref ref="LOGSTASH_UDP" />
 		</logger>

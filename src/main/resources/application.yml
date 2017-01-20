@@ -2,3 +2,5 @@ spring:
   application.name: demo-elk-log
 
 logging.path: target
+
+elk.host: no-elk-host
